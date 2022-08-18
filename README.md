@@ -1,70 +1,105 @@
-# Getting Started with Create React App
+# Adopt-a-pet with react router 6
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the final project from [codeacademy's React Router course](https://www.codecademy.com/learn/learn-react-router]. The course is written for React Router v5, and includes a few warnings that it won't work if you install React Router 6. Having refactored the previous tutorial into React Router 6, I carried out this project with React Router 6.
 
-## Available Scripts
+I've listed out the main differences between what I did and the actual tutorial. Please:
 
-In the project directory, you can run:
+* flag any mistakes/anything unclear.  
+* let me know if you'd like to see, or would like to help me, flesh this out into a full tutorial.
 
-### `yarn start`
+# Main differences
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Step 1
+Run `npm install react-router-dom`.  
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+This installs the most recent version of React Router, whereas the provided command 
+`npm install --save react-router-dom@5.2.0` installs specifically v5.2.0. Note the `--save` flag was deprecated in npm v5 (current version at time of writing is v8.18), and isn't necessary.
 
-### `yarn test`
+## Step 4
+Import `Route` and `Routes` from `react-router-dom`.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Step 5
+Updated Route syntax:  `<Route path=":type/*" element={<HomePage />} />`  
 
-### `yarn build`
+* `:type`sets ‘type’ as a param so it can be grabbed by useParams.  
+* `*` enables rendering of child links
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Step 6
+**to look into**  
+This may have been simplified by React Router 6's relative link syntax. Converseley, I found I had to add the home link twice (once with `'/'` only, and once as step 5, as trailing `?` to make parameter optional not available in React Router 6.  
+At this point, *App.js* looks like this:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+	import HomePage from './pages/home';
+	import SearchPage from './pages/search';
+	import PetDetailsPage from './pages/detail';
+	import PetDetailsNotFound from './pages/petDetailsNotFound';
+	import Navigation from './components/navigation';
+	import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+	
+	function App() {
+	  return (
+	    <Router>
+	      <div>
+	          <Navigation />
+	        <Routes>
+	            <Route path="/" element={<HomePage />} />
+	            <Route path=":type/*" element={<HomePage />} />
+	        </Routes>
+	      </div>
+	    </Router>
+	  );
+	}
+	
+	export default App;
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Step 9
+Note to self: [from the docs](https://reactrouter.com/docs/en/v6/components/nav-link). A ``<NavLink>`` is a special kind of ``<Link>`` that knows whether or not it is "active".
 
-### `yarn eject`
+## Step 10
+I replaced the style class with ternary operator from the example [in the docs](https://reactrouter.com/docs/en/v6/components/nav-link).
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Step 14
+I ignored this step as didn't have the problem it mentioned.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Step 16
+`useHistory()` is deprecated - [docs on switching to `useNavigate()`](https://reactrouter.com/docs/en/v6/upgrading/v5#use-usenavigate-instead-of-usehistory).  
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+	import React, { useRef } from 'react';
+	// import useNavigate here.
+	import { useNavigate } from 'react-router-dom';
+	
+	const Search = () => {
+	
+	  // get the navigate object here
+	  const navigate = useNavigate();
+	  const searchInputRef = useRef();
+	
+	  const onSearchHandler = (e) => {
+	    e.preventDefault();
+	
+	    const searchQuery = new URLSearchParams({
+	      name: searchInputRef.current.value
+	    }).toString();
+	
+	    // imperatively redirect with navigate
+	    navigate(`/search?${searchQuery}`);
+	
+	  };
+	
+	  return (
+	    <form onSubmit={onSearchHandler} className="search-form">
+	      <input type="text" className="search" ref={searchInputRef} />
+	      <button type="submit" className="search-button">
+	        🔎
+	      </button>
+	    </form>
+	  );
+	};
+	
+	export default Search;
+	
+## Step 26
+Again, `useHistory()` deprecated, so import and use `useNavigate()` as [per the docs](https://reactrouter.com/docs/en/v6/upgrading/v5#use-usenavigate-instead-of-usehistory).
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
