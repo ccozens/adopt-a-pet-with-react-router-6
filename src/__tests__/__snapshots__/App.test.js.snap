@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App should look like the snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <nav>
+      <div
+        class="nav-logo"
+      >
+        <img
+          alt="Petlover"
+          src="logo.svg"
+        />
+        <form
+          class="search-form"
+        >
+          <input
+            aria-label="search-box"
+            class="search"
+            type="text"
+          />
+          <button
+            class="search-button"
+            type="submit"
+          >
+            🔎
+          </button>
+        </form>
+      </div>
+      <ul
+        class="nav-links"
+      >
+        <li>
+          <a
+            aria-current="page"
+            class="nav-link-active"
+            href="/"
+          >
+            All Pets
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <h2>
+      Loading...
+    </h2>
+  </div>
+</DocumentFragment>
+`;

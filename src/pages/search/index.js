@@ -27,7 +27,7 @@ const SearchPage = () => {
     }
 
     getPetsData();
-  }, [queryParams]);
+  }, [name]);
 
   return (
     <div className="page">

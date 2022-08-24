@@ -1,0 +1,7 @@
+{
+    "rootDir": "../",
+    "setupFiles": [
+        "<rootDir>/config/setupTests.js",
+        "<rootDir>/config/jest.config.js"
+    ]
+}
