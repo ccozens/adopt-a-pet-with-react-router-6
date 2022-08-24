@@ -1,13 +1,13 @@
-# Adopt-a-pet with react router 6
+# Adopt-a-pet with react router 6 and jest/React testing library
 
-This is the final project from [codeacademy's React Router course](https://www.codecademy.com/learn/learn-react-router). The course is written for React Router v5, and includes a few warnings that it won't work if you install React Router 6. Having refactored the previous tutorial into React Router 6, I carried out this project with React Router 6.
-
-A live codesandbox is [here](https://codesandbox.io/s/adopt-a-pet-with-react-router-6-04qvvn).
+This is the final project from [codeacademy's React Router course](https://www.codecademy.com/learn/learn-react-router]. The course is written for React Router v5, and includes a few warnings that it won't work if you install React Router 6. Having refactored the previous tutorial into React Router 6, I carried out this project with React Router 6.
 
 I've listed out the main differences between what I did and the actual tutorial. Please:
 
 * flag any mistakes/anything unclear.  
 * let me know if you'd like to see, or would like to help me, flesh this out into a full tutorial.
+
+There are some tests using jest and React testing library, which are beyond the scope of the tutorial and I've added as a learning exercse.
 
 # Main differences
 
@@ -214,7 +214,7 @@ It does not require any setup and comes preinstalled with `create-react-app`.
 I have written 3 tests. These are not exhaustive as the purpose here was for me to get some practice writing tests. First of all, I have pasted in `App.test.js`, and next up I'll go through the tests line by line:
 
 	// App.test.js
-	import React from 'react';
+	gitimport React from 'react';
 	import { render, cleanup, screen } from '@testing-library/react';
 	import userEvent from '@testing-library/user-event';
 	import '@testing-library/jest-dom/extend-expect';
