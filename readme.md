@@ -261,7 +261,8 @@ test('search on home page works', () => {
 });
 ```
 
-And the output:
+And the output:  
+
 ![test output screenshot](./test-output.png)
 
 
