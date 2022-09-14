@@ -1,6 +1,6 @@
 # Adopt-a-pet with react router 6 and jest/React testing library
 
-This is the final project from [codeacademy's React Router course](https://www.codecademy.com/learn/learn-react-router]. The course is written for React Router v5, and includes a few warnings that it won't work if you install React Router 6. Having refactored the previous tutorial into React Router 6, I carried out this project with React Router 6.
+This is the final project from [codeacademy's React Router course](https://www.codecademy.com/learn/learn-react-router). The course is written for React Router v5, and includes a few warnings that it won't work if you install React Router 6. Having refactored the previous tutorial into React Router 6, I carried out this project with React Router 6.
 
 I've listed out the main differences between what I did and the actual tutorial. Please:
 
